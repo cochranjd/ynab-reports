@@ -1,0 +1,80 @@
+body {
+  padding: 10px;
+}
+
+svg {
+  background-color: #fff;
+  fill: #fff;
+}
+
+.d3-chart {
+  line.target-line {
+    stroke: #000;
+    stroke: rgb(0, 191, 255);
+    stroke-width: 1;
+  }
+}
+
+.d3-chart {
+  svg {
+  }
+
+  .label-text,
+  .axis text {
+    fill: #252525;
+    stroke: none;
+  }
+
+  .domain {
+    opacity: 0;
+  }
+
+  .axis line,
+  .grid line {
+    stroke: rgb(25, 25, 25);
+    stroke-opacity: 0.1;
+  }
+
+  .data-area {
+    fill: rgb(0, 191, 255);
+    stroke: rgb(0, 191, 255);
+  }
+
+  .data-circles {
+    fill: rgb(0, 191, 255);
+    stroke: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: rgba(245, 245, 245, 0.9);
+  border: solid 1px #aaa;
+  border-radius: 5px;
+  pointer-events: none;
+
+  h3, h5, p {
+    margin: 0;
+  }
+
+  h3 {
+  }
+
+  h5 {
+  }
+
+  p {
+    &.credit {
+      color: green;
+    }
+
+    &.debit {
+      color: red;
+    }
+  }
+}
+
+@import "ember-bootstrap/bootstrap";

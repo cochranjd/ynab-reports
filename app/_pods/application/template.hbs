@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 d-flex justify-content-between">
+    <a href="#" {{action "previousMonth"}}>{{config.previousBudgetMonthName}}</a>
+    <a href="#">{{config.budgetMonthName}}</a>
+    <a href="#" {{action "nextMonth"}}>{{config.nextBudgetMonthName}}</a>
+  </div>
+  <div class="col-3"></div>
+</div>
+
+{{#if loading}}
+  <h5>Loading</h5>
+{{else}}
+  {{app-wrapper transactions=transactions category=category categories=categories}}
+{{/if}}

@@ -1,0 +1,8 @@
+<div class="w-100 mb-5" style="height: 300px;">
+  <div class="text-center">
+    <h3 class="m-0">{{title}}</h3>
+    <em class="mt-1">{{currency-helper spendPerDay}}/day, {{currency-helper totalBudget}} total</em>
+  </div>
+
+  {{d3-chart data=runningDailyTotal totalStartingBalance=totalStartingBalance totalBudget=totalBudget tipDiv=tipDiv}}
+</div>

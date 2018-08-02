@@ -9,7 +9,9 @@
 </div>
 
 {{#if loading}}
-  <h5>Loading</h5>
+  <div class="loader-wrap">
+    <div class="loader">Loading...</div>
+  </div>
 {{else}}
   {{app-wrapper transactions=transactions category=category categories=categories}}
 {{/if}}

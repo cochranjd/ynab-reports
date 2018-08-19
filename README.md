@@ -1,56 +1,40 @@
-# reports
+# You Need A Budget Reporting
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a simple set of interactive visualizations utilizing the newly released YNAB API. See [https://api.youneedabudget.com/](https://api.youneedabudget.com/) for more information.
 
-## Prerequisites
 
-You will need the following things properly installed on your computer.
+# Instructions to use
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+To run the application, you'll first need to use Yarn to install all requirements.
 
-## Installation
+```
+yarn install
+```
 
-* `git clone <repository-url>` this repository
-* `cd reports`
-* `npm install`
+Next, add your YNAB API Key and preferred PORT to a `.env` file which will be read by the application on startup.
 
-## Running / Development
+```
+YNAB_BUDGET_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+```
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+Next, use yarn to start the application.
 
-### Code Generators
+```
+yarn start
+```
 
-Make use of the many generators for code, try `ember help generate` for more details
+Finally, visit your app at [http://localhost:4200](http://localhost:4200).
 
-### Running Tests
+# Application Description
+This app utilizes [DC.js](https://github.com/dc-js/dc.js), [Crossfilter](https://github.com/crossfilter/crossfilter) and
+[D3](https://github.com/d3/d3) to provide basic visualizations surrounding the transaction history for a particular budget in YNAB.
 
-* `ember test`
-* `ember test --server`
+The side bar provides a dropdown where users can select their preferred budget and include/exclude given
+categories from the data set.  
 
-### Linting
+On the Overview page, the user is provided with visualizations surrounding their transactions.  These
+visualizations are selectable and allow the user to filter the data used across the page.
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+On the Progress page, users are presented with zoomable charts that present the current month's progress
+for each selected category.  This provides a quick sanity check to see if your spending is inline with 
+the budget goal you have in mind.

@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'north-land';
+  src:
+    url('//s3.amazonaws.com/prod-media-freshlist-com/fonts/north_land-webfont.woff2') format('woff2'),
+    url('//s3.amazonaws.com/prod-media-freshlist-com/fonts/north_land-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'bebas-neue';
+  src:
+    url('//s3.amazonaws.com/prod-media-freshlist-com/fonts/bebasneue-webfont.woff2') format('woff2'),
+    url('//s3.amazonaws.com/prod-media-freshlist-com/fonts/bebasneue-webfont.woff') format('woff');
+}
+
+@mixin bebas-neue-font {
+  font-family: "bebas-neue", sans-serif;
+  font-weight: 400;
+}
+
+@mixin northland-font {
+  font-family: "north-land", serif;
+  font-weight: 400;
+}
+
+@mixin montserrat-lighter-font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+}
+
+@mixin montserrat-light-font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+@mixin montserrat-regular-font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+@mixin montserrat-semibold-font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+@mixin montserrat-bold-font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+@mixin opensans-bold-font {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+
+.font-fancy {
+  font-family: "north-land", serif;
+  font-weight: 400;
+}
+
+.font-normal-lighter,
+.font-normal-light,
+.font-normal-regular,
+.font-normal-semibold,
+.font-normal-bold {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-normal-lighter {
+  font-weight: 200;
+}
+
+.font-normal-light {
+  font-weight: 300;
+}
+
+.font-normal-regular {
+  font-weight: 400;
+}
+
+.font-normal-semibold {
+  font-weight: 600;
+}
+
+.font-normal-bold {
+  font-weight: 700;
+}
+
+
+.font-heavy {
+  font-family: "bebas-neue", sans-serif;
+  font-weight: 400;
+}
+
+.font-heavy-bold {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.font-size-tiny {
+  font-size: 0.75em;
+}
+
+.font-size-small {
+  font-size: 0.9em;
+}
+
+.font-size-normal {
+  font-size: 1em;
+}
+
+.font-size-oversized {
+  font-size: 1.1em;
+}
+
+.font-size-large {
+  font-size: 1.125em;
+}
+
+.font-size-larger {
+  font-size: 1.25em;
+}
+
+.font-size-huge {
+  font-size: 1.5em;
+}
+
+.font-size-gigantic {
+  font-size: 2.5em;
+}
+
+@media (max-width: 1024px) {
+  .responsive-text {
+    &.font-size-tiny {
+      font-size: 0.55em;
+    }
+
+    &.font-size-small {
+      font-size: 0.7em;
+    }
+
+    &.font-size-normal {
+      font-size: 0.8em;
+    }
+
+    &.font-size-oversized {
+      font-size: 0.9em;
+    }
+
+    &.font-size-large {
+      font-size: 1em;
+    }
+
+    &.font-size-larger {
+      font-size: 1.125em;
+    }
+
+    &.font-size-huge {
+      font-size: 1.25em;
+    }
+
+    &.font-size-gigantic {
+      font-size: 2em;
+    }
+  }
+}

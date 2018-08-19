@@ -1,4 +1,4 @@
-import EmberObject, { get } from '@ember/object';
+import EmberObject from '@ember/object';
 import { computed } from '@ember-decorators/object';
 import moment from 'moment';
 

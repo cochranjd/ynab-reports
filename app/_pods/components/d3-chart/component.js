@@ -197,9 +197,15 @@ export default class D3Chart extends Component {
   }
 
   plotTarget(xScale, yScale) {
-    const domain = xScale.domain();
     const dateMin = moment(this.get('config.firstDayOfPeriod'), 'YYYY-MM-DD').toDate();
     const dateMax = moment(this.get('config.lastDayOfPeriod'), 'YYYY-MM-DD').toDate();
+
+    this.drawingCanvas.append('line')
+      .attr('class', 'today-line data')
+      .attr('x1', xScale(moment().startOf('day').toDate()))
+      .attr('x2', xScale(moment().startOf('day').toDate()))
+      .attr('y1', this.chartHeight)
+      .attr('y2', 0)
 
     this.drawingCanvas.append('line')
       .attr('class', 'target-line data')
@@ -230,6 +236,15 @@ export default class D3Chart extends Component {
       .enter()
       .append('circle')
       .attr('class', 'data-circles data')
+      .attr('class', d => {
+        const arr = ['data-circles', 'data'];
+        
+        if (d.dateStr === moment().format('MM-DD-YYYY')) {
+          arr.push('today');
+        }
+
+        return arr.join(' ');
+      })
       .attr('cx', d => xScale(d.date))
       .attr('cy', d => yScale(d.total))
       .on('mouseenter', function (d) {
@@ -251,7 +266,7 @@ export default class D3Chart extends Component {
         d3.select(this)
           .transition()
           .duration(100)
-          .attr('r', 5);
+          .attr('r', 3);
         tipDiv.transition()
           .duration(500)
             .style('opacity', 0);
@@ -275,11 +290,11 @@ export default class D3Chart extends Component {
               .style('fill-opacity', 0.5)
               .transition()
                 .duration(100)
-                  .attr('r', 5)
+                  .attr('r', 3)
                   .style('fill-opacity', 0.3);
     } else {
       areaPath.style('fill-opacity', 0.3);
-      this.drawingCanvas.selectAll('circle').attr('r', 5).style('fill-opacity', 0.3);
+      this.drawingCanvas.selectAll('circle').attr('r', 3).style('fill-opacity', 0.3);
     }
   }
 }

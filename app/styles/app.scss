@@ -1,49 +1,168 @@
+$sizes: (
+  10: 10%,
+  20: 20%,
+  30: 30%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  70: 70%,
+  80: 80%,
+  90: 90%
+);
+
+@import "./typography";
+@import "./loader";
+@import "ember-bootstrap/bootstrap";
+
+@import "ember-power-select";
+
 body {
-  padding: 10px;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fafafa;
 }
 
-svg {
-  background-color: #fff;
-  fill: #fff;
+.list-group-item.disabled {
+  color: #ccc;
 }
 
-.d3-chart {
-  line.target-line {
-    stroke: #000;
-    stroke: rgb(0, 191, 255);
-    stroke-width: 1;
-  }
-}
+.spending-trend {
+  height: 300px;
 
-.d3-chart {
   svg {
+    .label-text,
+    .axis text {
+      fill: #252525;
+      stroke: none;
+    }
+
+    .domain {
+      stroke: #555;
+      stroke-opacity: 0.8;
+    }
+
+    .axis line,
+    .grid-line line {
+      stroke: #555;
+      stroke-opacity: 0.8;
+    }
+
+    .monthly-rect {
+      fill: #fff;
+      fill-opacity: 0;
+      cursor: pointer;
+
+      &:hover {
+        fill-opacity: 0.5;
+      }
+    }
+
+    .data-area {
+      fill: rgb(0, 191, 255);
+      stroke: rgb(0, 191, 255);
+    }
+  }
+}
+
+.spending-pie {
+  height: 300px;
+
+  .pie-slice {
+    path {
+      stroke: #fff;
+      stroke-opacity: 0.5;
+    }
+  }
+}
+
+.spending-table {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.progress-wrapper {
+  svg {
+    fill: #fff;
   }
 
-  .label-text,
-  .axis text {
-    fill: #252525;
-    stroke: none;
+  .d3-chart {
+    line.today-line {
+      stroke: rgba(255, 0, 0, 0.3);
+      stroke-width: 1;
+    }
+
+    line.target-line {
+      stroke: #000;
+      stroke: rgb(0, 191, 255);
+      stroke-width: 1;
+    }
   }
 
-  .domain {
-    opacity: 0;
+  .d3-chart {
+    svg {
+    }
+
+    .label-text,
+    .axis text {
+      fill: #252525;
+      stroke: none;
+    }
+
+    .domain {
+      opacity: 0;
+    }
+
+    .axis line,
+    .grid line {
+      stroke: rgb(25, 25, 25);
+      stroke-opacity: 0.1;
+    }
+
+    .data-area {
+      fill: rgb(0, 191, 255);
+      stroke: rgb(0, 191, 255);
+    }
+
+    .data-circles {
+      fill: rgb(0, 191, 255);
+      stroke: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+
+      &.today {
+        fill: rgb(255, 0, 0);
+        // fill-opacity: 1!important;
+      }
+    }
   }
 
-  .axis line,
-  .grid line {
-    stroke: rgb(25, 25, 25);
-    stroke-opacity: 0.1;
-  }
+  .tooltip {
+    position: absolute;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: rgba(245, 245, 245, 0.9);
+    border: solid 1px #aaa;
+    border-radius: 5px;
+    pointer-events: none;
 
-  .data-area {
-    fill: rgb(0, 191, 255);
-    stroke: rgb(0, 191, 255);
-  }
+    h3, h5, p {
+      margin: 0;
+    }
 
-  .data-circles {
-    fill: rgb(0, 191, 255);
-    stroke: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
+    h3 {
+    }
+
+    h5 {
+    }
+
+    p {
+      &.credit {
+        color: green;
+      }
+
+      &.debit {
+        color: red;
+      }
+    }
   }
 }
 
@@ -61,12 +180,15 @@ svg {
   }
 
   h3 {
+    font-size: 14px;
   }
 
   h5 {
+    font-size: 12px;
   }
 
   p {
+    font-size: 10px;
     &.credit {
       color: green;
     }
@@ -77,5 +199,3 @@ svg {
   }
 }
 
-@import "./loader";
-@import "ember-bootstrap/bootstrap";

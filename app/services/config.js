@@ -7,7 +7,7 @@ export default class FetchService extends Service {
   constructor(...args) {
     super(...args);
 
-    this.set('budgetMonth', ENV.YNAB_BUDGET_MONTH || moment().startOf('month').format('YYYY-MM-DD'));
+    this.set('budgetMonth', moment().startOf('month').format('YYYY-MM-DD'));
   }
 
   @computed('budgetMonth')
@@ -46,22 +46,7 @@ export default class FetchService extends Service {
   }
 
   @computed('')
-  get categoryTag() {
-    return ENV.YNAB_CATEGORY_TAG || '.*';
-  }
-
-  @computed('')
   get apiKey() {
     return ENV.YNAB_API_KEY;
-  }
-
-  @computed('')
-  get budgetId() {
-    return ENV.YNAB_BUDGET_ID;
-  }
-
-  @computed('categoryTag')
-  get categoryTagRegex() {
-    return new RegExp(this.categoryTag);
   }
 }

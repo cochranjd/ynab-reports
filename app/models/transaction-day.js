@@ -1,4 +1,4 @@
-import EmberObject, { get } from '@ember/object';
+import EmberObject from '@ember/object';
 import { computed } from '@ember-decorators/object';
 import moment from 'moment';
 
@@ -11,7 +11,7 @@ export default class TransactionDay extends EmberObject {
 
   @computed('transactions')
   get total() {
-    const val= this.transactions.map(t => t.amountInCents).reduce((s, v) => s + v, 0);
+    const val= this.transactions.map(t => -1 * t.amount).reduce((s, v) => s + v, 0);
     return val;
   }
 

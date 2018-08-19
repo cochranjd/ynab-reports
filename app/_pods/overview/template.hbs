@@ -1,0 +1,5 @@
+{{#if (or rebuildingTask.isRunning dataState.changeBudgetTask.isRunning)}}
+  Loading
+{{else}}
+  {{overview-wrapper onResize=(action "onResize")}}
+{{/if}}

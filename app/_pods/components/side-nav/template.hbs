@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-12 mt-3 mb-3">
+    {{#power-select
+      options=dataState.budgets
+      selected=dataState.activeBudget
+      searchEnabled=false
+      placeholder="Select Budget"
+      onchange=(action onBudgetChanged) as |option|}}
+      {{option.name}}
+    {{/power-select}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-12" style="height: 75vh;overflow-y: scroll;background-color: #fafafa;">
+    {{#if dataState.activeBudget}}
+      {{#if dataState.loadCategoryTask.isRunning}}
+        Loading
+      {{else}}
+        {{#each dataState.categoryGroups as |categoryGroup|}}
+          <div class="row">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12">
+                  <p class="m-0 font-size-small text-uppercase">
+                    {{categoryGroup.name}} ({{categoryGroup.categories.length}})
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <ul class="list-group list-group-flush">
+                    {{#each categoryGroup.categories as |category|}}
+                      <li style="cursor: pointer" class="list-group-item list-group-item-action font-size-tiny {{if (not category.__enabled) 'disabled'}}" {{action dataState.toggleCategory category}}>
+                        {{category.name}}
+                        {{#if category.__enabled}}
+                          <span class="pull-right">{{fa-icon "check"}}</span>
+                        {{/if}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    {{else}}
+      <small>Select budget to see categories</small>
+    {{/if}}
+  </div>
+</div>

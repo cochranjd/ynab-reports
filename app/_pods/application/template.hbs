@@ -1,17 +1,22 @@
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-6 d-flex justify-content-between">
-    <a href="#" {{action "previousMonth"}}>{{config.previousBudgetMonthName}}</a>
-    <a href="#">{{config.budgetMonthName}}</a>
-    <a href="#" {{action "nextMonth"}}>{{config.nextBudgetMonthName}}</a>
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    {{side-nav onBudgetChanged=(action "budgetChanged")}}
+    <div class="col-9">
+      {{#if dataState.activeBudget}}
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center mt-3">
+            {{#link-to "overview" class="btn btn-primary"}}Overview{{/link-to}}
+            {{#link-to "progress" class="btn btn-primary ml-5"}}Progress{{/link-to}}
+          </div>
+        </div>
+        {{outlet}}
+      {{else}}
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center mt-3">
+            <h3>Please select a budget</h3>
+          </div>
+        </div>
+      {{/if}}
+    </div>
   </div>
-  <div class="col-3"></div>
 </div>
-
-{{#if loading}}
-  <div class="loader-wrap">
-    <div class="loader">Loading...</div>
-  </div>
-{{else}}
-  {{app-wrapper transactions=transactions category=category categories=categories}}
-{{/if}}

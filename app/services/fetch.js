@@ -9,33 +9,17 @@ export default class FetchService extends Service {
   constructor() {
     super(...arguments);
 
-    this.base = `https://api.youneedabudget.com/v1/budgets/${this.get('config.budgetId')}`;
+    this.baseUrl = 'https://api.youneedabudget.com/v1';
 
-    this.getTask = task(function *(url, params) {
-      const urlWithParams = url + this.processParams(params);
-      const response = yield fetch(`${this.base}/${urlWithParams}`, {
+    this.xhrGet = task(function *(url) {
+      const response = yield fetch(`${this.baseUrl}/${url}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${this.get('config.apiKey')}`
         }
       });
+
       return yield response.json();
     });
-  }
-
-  processParams(params) {
-    if (!params || Object.keys(params).length === 0) {
-      return '';
-    }
-
-    const paramString = Object.keys(params).map(paramKey => {
-      return `${paramKey}=${params[paramKey]}`;
-    }).join('&');
-
-    return `?${paramString}`;
-  }
-
-  getRequest(url, params) {
-    return this.get('getTask').perform(url, params);
   }
 }

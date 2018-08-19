@@ -1,6 +1,4 @@
 <div class="row">
-  {{spending-chart transactions=transactions category=categories tipDiv=tipDiv}}
-
   {{#each categories as |category|}}
     {{spending-chart transactions=transactions category=category tipDiv=tipDiv}}
   {{/each}}

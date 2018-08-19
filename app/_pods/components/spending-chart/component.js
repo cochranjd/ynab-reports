@@ -7,9 +7,10 @@ import CurrencyFormat from 'reports/helpers/currency-format';
 import moment from 'moment';
 import { service } from '@ember-decorators/service';
 
-@classNames('col-4', 'border')
+@classNames('col-6', 'mt-2', 'mb-2')
 export default class SpendingChart extends Component {
   @service config;
+  @service dataState;
 
   @computed('category')
   get isList() {
@@ -25,30 +26,14 @@ export default class SpendingChart extends Component {
     return this.totalBudget / days;
   }
 
-  @computed('category', 'isList', 'spendPerDay')
+  @computed('category', 'spendPerDay')
   get title() {
-    if (this.isList) {
-      return 'Aggregate';
-    }
-
-    if (this.get('config.categoryTag') !== '*') {
-      return this.category.name.replace(this.get('config.categoryTagRegex'), '');
-    }
+    return this.category.name;
   }
 
   @computed('category')
-  get aCategory() {
-    if (this.isList) {
-      return this.category;
-    }
-
-    return [this.category];
-  }
-
-  @computed('aCategory')
   get catTransactions() {
-    const catNames = this.aCategory.map(c => c.name);
-    return this.transactions.filter(t => catNames.includes(t.category_name));
+    return this.transactions.filter(t => t.category_id === this.category.id);
   }
 
   @computed('catTransactions')
@@ -88,12 +73,12 @@ export default class SpendingChart extends Component {
 
   @computed('aCategory')
   get totalStartingBalance() {
-    return this.aCategory.reduce((s, c) => s + c.get('startingBalanceInCents'), 0);
+    return this.category.get('startingBalanceInCents');
   }
 
   @computed('aCategory')
   get totalBudget() {
-    return this.aCategory.reduce((s, c) => s + c.get('budgetInCents'), this.totalStartingBalance);
+    return this.category.get('budgetInCents') + this.totalStartingBalance;
   }
   
   @computed('transactionsByDay')
@@ -111,9 +96,17 @@ export default class SpendingChart extends Component {
   }
 
   buildReport(transactions, sum, totalForDay) {
+    const payees = this.get('dataState.payees');
     const parts = transactions.map(t => ({
-      amount: t.amountInCents,
-      payee: t.payee_name
+      amount: -1 * t.amount,
+      payee: ((payee_id) => {
+        const payee = payees.findBy('id', payee_id);
+        if (!payee) {
+          return '--';
+        }
+
+        return payee.name;
+      })(t.payee_id)
     })).map(t => `<p class="${t.amount < 0 ? 'credit' : 'debit'}">${CurrencyFormat(t.amount)} @ ${t.payee}</p>`);
     parts.unshift(`<h5>Daily Spending: ${CurrencyFormat(totalForDay)}</h5>`);
     parts.unshift(`<h3>Total: ${CurrencyFormat(sum)}</h3>`);

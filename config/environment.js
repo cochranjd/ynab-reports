@@ -3,8 +3,6 @@
 module.exports = function(environment) {
   let ENV = {
     YNAB_API_KEY: process.env.YNAB_API_KEY,
-    YNAB_CATEGORY_KEY: process.env.YNAB_CATEGORY_TAG,
-    YNAB_BUDGET_MONTH: process.env.YNAB_BUDGET_MONTH,
     modulePrefix: 'reports',
     podModulePrefix: 'reports/_pods',
     environment,

@@ -8,7 +8,7 @@ This is a simple set of interactive visualizations utilizing the newly released 
 To run the application, you'll first need to use Yarn to install all requirements.
 
 ```
-yarn install
+yarn
 ```
 
 Next, add your YNAB API Key and preferred PORT to a `.env` file which will be read by the application on startup.
